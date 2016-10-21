@@ -1,3 +1,9 @@
+/*!
+ * auto-suggest-email v0.1.0 (https://github.com/Fetten/auto-suggest-email)
+ * Copyright 2016 Marcel Fetten <fetten@fetten-meier.com>
+ * Licensed under the MIT license
+ */
+
 var autoSuggestEmail;
 autoSuggestEmail = function (inputElement, options) {
 
@@ -87,8 +93,8 @@ autoSuggestEmail = function (inputElement, options) {
         }
     });
 
-    self.inputElement.addEventListener('keyup', function (event) {
 
+    self.inputElement.addEventListener('keyup', function (event) {
         // if user clicks enter, fill in the form
         if (13 === event.keyCode) {
             if (document.getElementsByClassName('is-highlighted')) {
@@ -99,8 +105,8 @@ autoSuggestEmail = function (inputElement, options) {
             }
         }
 
-        // if user hits left or right arrow or backspace, hide the list. The user is likely to correct an error
-        else if (37 === event.keyCode || 39 === event.keyCode || 8 === event.keyCode) {
+        // if user hits left or right arrow, backspace or tab, hide the list. The user is likely to correct an error
+        else if ( 37 === event.keyCode || 39 === event.keyCode || 8 === event.keyCode) {
             self.listContainer.style.display = 'none';
         }
 
@@ -200,6 +206,12 @@ autoSuggestEmail = function (inputElement, options) {
     }, false); // end Main Logic
 
 
+    //if user tabs out/clicks outside
+    self.inputElement.addEventListener('blur', function (event) {
+        self.listContainer.style.display = 'none';
+    });
+
+
     /*
      * Add Event Listeners to the list
      *
@@ -224,7 +236,7 @@ autoSuggestEmail = function (inputElement, options) {
             results[i].style.cursor = 'pointer';
 
             // event listener for click event
-            results[i].addEventListener('click', function () {
+            results[i].addEventListener('mousedown', function () {
                 self.inputElement.value = this.textContent;
                 self.listContainer.style.display = 'none';
             }, false);
