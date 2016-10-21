@@ -48,7 +48,8 @@ autoSuggestEmail = function (inputElement, options) {
             'facebook.com',
             'outlook.com',
             'yahoo.com'
-        ]
+        ],
+        showMaxDomains: 5,
     };
 
     // check if options have been set
@@ -176,7 +177,7 @@ autoSuggestEmail = function (inputElement, options) {
             var li;
 
             if (exactMatches.length > 0) {
-                for (i = 0; i < exactMatches.length; i += 1) {
+                for (i = 0; i < exactMatches.length & i < self.options.showMaxDomains; i += 1) {
 
                     // take first domain match for autocomplete
                     subStr = exactMatches[i].substr(emailDomain.length, exactMatches[i].length);
@@ -189,7 +190,7 @@ autoSuggestEmail = function (inputElement, options) {
                 addListListeners();
 
             } else if (errorMatches.length > 0) {
-                for (i = 0; i < errorMatches.length; i += 1) {
+                for (i = 0; i < errorMatches.length & i < self.options.showMaxDomains; i += 1) {
                     // take first domain match for autocomplete
                     subStr = errorMatches[i].substr(emailDomain.length, errorMatches[i].length);
 

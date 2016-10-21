@@ -34,7 +34,8 @@ To get the script running, create an instance of it and tell Auto-Suggest E-Mail
     var inputField = document.querySelector('form input#email');
     var ase = new autoSuggestEmail(inputField, {
         domains:  ["mail.ru", "gmail.com", "googlemail.com", "hotmail.com", "hotmail.co.uk", "yahoo.com", "yahoo.co.jp"],
-        priority: ["mail.ru", "gmail.com", "hotmail.com", "yahoo.co.jp"]
+        priority: ["mail.ru", "gmail.com", "hotmail.com", "yahoo.co.jp"],
+        showMaxDomains: 4,
     });
 </script>
 ```
@@ -54,6 +55,12 @@ Type: `Array`
 
 The domains that will be shown immediately after the user types in the @ sign. These domains should also be included in
 the `domains` option. Overwrites the default options.
+
+#### showMaxDomains
+Type: `Number`
+
+Show at most showMaxDomains number of domains. Overwrites the default options.
+
 
 #### Default Options
 These domains are included by default.
@@ -83,7 +90,8 @@ priority: [
     'facebook.com',
     'outlook.com',
     'yahoo.com'
- ]
+ ],
+showMaxDomains: 5,
 ```
 
 ## Where should I use it?
